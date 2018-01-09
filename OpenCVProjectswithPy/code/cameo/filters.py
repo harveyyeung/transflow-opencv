@@ -178,7 +178,7 @@ class BGRVelviaCurveFilter(BGRCurveFilter):
             dtype = dtype)        
 
 class VConvolutionFilter(object):
-     """A filter that applies a convolution to V (or all of BGR)."""
+    """A filter that applies a convolution to V (or all of BGR)."""
     def __init__(self,kernel):
         self._kernel= kernel
     
@@ -187,11 +187,11 @@ class VConvolutionFilter(object):
         cv2.filter2D(src,-1,self._kernel,dst)
 
 class SharpenFilter(VConvolutionFilter):
-      """A sharpen filter with a 1-pixel radius."""
-        def __init__(self):
+    """A sharpen filter with a 1-pixel radius."""
+    def __init__(self):
         kernel = numpy.array([[-1, -1, -1],
-        [-1, 9, -1],
-        [-1, -1, -1]])
+                            [-1, 9, -1],
+                            [-1, -1, -1]])
         VConvolutionFilter.__init__(self, kernel)      
 
 '''注意，只要我们想保持图像的整体亮度不变,权重总和就要1.
@@ -211,7 +211,7 @@ class FindEdgesFilter(VConvolutionFilter):
 而且邻近像素的权重全为正。以下就是一个简单的邻近平均滤波器
 '''
 class BlurFilter(VConvolutionFilter):
-"""A blur filter with a 2-pixel radius."""
+    """A blur filter with a 2-pixel radius."""
     def __init__(self):
         kernel = numpy.array([[0.04, 0.04, 0.04, 0.04, 0.04],
                             [0.04, 0.04, 0.04, 0.04, 0.04],
